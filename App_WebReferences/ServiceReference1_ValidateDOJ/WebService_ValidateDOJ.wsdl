@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CheckDateOfJoining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DOJ" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDateOfJoiningResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDateOfJoiningResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckDateOfJoiningSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDateOfJoining" />
+  </wsdl:message>
+  <wsdl:message name="CheckDateOfJoiningSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDateOfJoiningResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService_ValidateDOJSoap">
+    <wsdl:operation name="CheckDateOfJoining">
+      <wsdl:input message="tns:CheckDateOfJoiningSoapIn" />
+      <wsdl:output message="tns:CheckDateOfJoiningSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService_ValidateDOJSoap" type="tns:WebService_ValidateDOJSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckDateOfJoining">
+      <soap:operation soapAction="http://tempuri.org/CheckDateOfJoining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService_ValidateDOJSoap12" type="tns:WebService_ValidateDOJSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckDateOfJoining">
+      <soap12:operation soapAction="http://tempuri.org/CheckDateOfJoining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService_ValidateDOJ">
+    <wsdl:port name="WebService_ValidateDOJSoap" binding="tns:WebService_ValidateDOJSoap">
+      <soap:address location="http://localhost:61695/WebService_ValidateDOJ.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService_ValidateDOJSoap12" binding="tns:WebService_ValidateDOJSoap12">
+      <soap12:address location="http://localhost:61695/WebService_ValidateDOJ.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
